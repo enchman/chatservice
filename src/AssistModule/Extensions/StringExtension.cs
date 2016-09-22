@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using BCrypt.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace AssistModule.Extensions
 {
@@ -66,6 +68,12 @@ namespace AssistModule.Extensions
             Buffer.BlockCopy(salt, 0, salt, 64, 64);
 
             return encode;
+        }
+
+        private static byte[] securePassword(string password, byte[] salt)
+        {
+            //byte[] securePassword = KeyDerivation.Pbkdf2(password, salt, KeyDerivationPrf.HMACSHA512, 500, 64);
+
         }
     }
 }
