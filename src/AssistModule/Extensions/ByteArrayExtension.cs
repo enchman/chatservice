@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace AssistModule.Extensions
 {
@@ -9,7 +10,10 @@ namespace AssistModule.Extensions
     {
         public static void Shuffle(this byte[] source)
         {
-            Assistant.Random.NextBytes(source);
+            using (var rnd = RandomNumberGenerator.Create())
+            {
+                rnd.GetBytes(source);
+            }
         }
     }
 }

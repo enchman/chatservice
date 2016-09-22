@@ -48,7 +48,6 @@ namespace ChatService
             }
 
             app.UseStaticFiles();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

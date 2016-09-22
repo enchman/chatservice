@@ -13,6 +13,18 @@ namespace ChatService.Controllers
             return View();
         }
 
+        public IActionResult Signup()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Signup([FromBody] object id)
+        {
+
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -31,5 +43,7 @@ namespace ChatService.Controllers
         {
             return View();
         }
+
+        
     }
 }

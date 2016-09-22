@@ -21,7 +21,9 @@
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1"
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
+    "ProfileModule": "1.0.0-*",
+    "AssistModule": "1.0.0-*"
   },
 
   "tools": {
