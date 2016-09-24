@@ -1,0 +1,31 @@
+﻿@model ChatService.Models.AccountTemplate
+
+@{
+    ViewData["Title"] = "User information";
+    if (Model.Passcode == Model.Repasscode) { ViewBag.PasswordMatch = "Matched"; }
+    else { ViewBag.PasswordMatch = "Not match!"; }
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Username</h4>
+    </div>
+    <div class="panel-body">
+        <p>@Model.Username</p>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Display name</h4>
+    </div>
+    <div class="panel-body">
+        <p>@Model.DisplayName</p>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Is password match</h4>
+    </div>
+    <div class="panel-body">
+        <p>@ViewBag.PasswordMatch</p>
+    </div>
+</div>

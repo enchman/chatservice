@@ -1,0 +1,20 @@
+﻿@model ChatService.Models.Account
+
+@{ 
+    ViewData["Title"] = "Profile";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Username</h4>
+    </div>
+    <div class="panel-body">
+        <p>@Model.Username</p>
+    </div>
+    <div class="panel-heading">
+        <h4>Display name</h4>
+    </div>
+    <div class="panel-body">
+        <p>@Model.DisplayName</p>
+    </div>
+</div>

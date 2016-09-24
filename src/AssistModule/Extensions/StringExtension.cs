@@ -65,15 +65,9 @@ namespace AssistModule.Extensions
 
             // Injecting salt and hash password to Encode data
             Buffer.BlockCopy(hash, 0, encode, 0, 64);
-            Buffer.BlockCopy(salt, 0, salt, 64, 64);
+            Buffer.BlockCopy(salt, 0, encode, 64, 64);
 
             return encode;
-        }
-
-        private static byte[] securePassword(string password, byte[] salt)
-        {
-            //byte[] securePassword = KeyDerivation.Pbkdf2(password, salt, KeyDerivationPrf.HMACSHA512, 500, 64);
-
         }
     }
 }

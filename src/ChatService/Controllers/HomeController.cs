@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ChatService.Models;
 
 namespace ChatService.Controllers
 {
@@ -19,10 +20,34 @@ namespace ChatService.Controllers
         }
 
         [HttpPost]
-        public IActionResult Signup([FromBody] object id)
-        {
+        public IActionResult Signup(AccountTemplate model)
+        {            
+            if (model.SetPassword())
+            {
+                Account user = model as Account;
+                Data.DataContext.Instance.Accounts.Add(user);
+                int rows = Data.DataContext.Instance.SaveChanges();
 
-            return View();
+                if (rows == 1)
+                {
+                    return RedirectToAction("Preview", model);
+                }
+                else
+                {
+                    ViewBag.Message = "Username is already exists";
+                    return View();
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Password is not match";
+                return View();
+            }
+        }
+
+        public IActionResult Preview(AccountTemplate user)
+        {
+            return View(user);
         }
 
         public IActionResult About()
@@ -44,6 +69,9 @@ namespace ChatService.Controllers
             return View();
         }
 
-        
+        private async void SaveAsync()
+        {
+            await Data.DataContext.Instance.SaveChangesAsync();
+        }
     }
 }

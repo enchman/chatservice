@@ -11,5 +11,7 @@ namespace ProfileModule
         public string Username { get; set; }
         public string DisplayName { get; set; }
         public byte[] Password { get; set; }
+
+        private AccountBase() { }
     }
 }

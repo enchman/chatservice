@@ -15,5 +15,12 @@ namespace AssistModule.Extensions
                 rnd.GetBytes(source);
             }
         }
+
+        public static bool VerifyToken(this byte[] source, byte[] compare)
+        {
+            HMACMD5 md5 = new HMACMD5(KeyContext.SemiKey);
+            byte[] token = md5.ComputeHash(source);
+            return source.SequenceEqual(compare);
+        }
     }
 }
