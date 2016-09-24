@@ -16,13 +16,14 @@ namespace AssistModule.Extensions
             }
         }
 
-<<<<<<< HEAD
+
         public static bool VerifyToken(this byte[] source, byte[] compare)
         {
             HMACMD5 md5 = new HMACMD5(KeyContext.SemiKey);
             byte[] token = md5.ComputeHash(source);
             return source.SequenceEqual(compare);
-=======
+        }
+
         public static string ToHex(this byte[] source)
         {
             if (source != null && source.Length != 0)
@@ -41,7 +42,6 @@ namespace AssistModule.Extensions
             {
                 return null;
             }
->>>>>>> 2fc4d3edd850680b4eefcbf13d46c3d8f4114839
         }
     }
 }
