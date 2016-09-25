@@ -10,8 +10,14 @@ namespace ChatService.Models
 {
     public class Account: IAccount
     {
-
         public int Id { get; set; }
+        public string DisplayName { get; set; }
+        public string Username { get; set; }
+        public byte[] Password { get; set; }
+    }
+
+    public class AccountTemplate
+    {
         [Required]
         [StringLength(64, MinimumLength = 2)]
         public string DisplayName { get; set; }
@@ -20,31 +26,25 @@ namespace ChatService.Models
         [StringLength(255, MinimumLength = 3)]
         public string Username { get; set; }
 
-        public byte[] Password { get; set; }
-    }
-
-    public class AccountTemplate: Account
-    {
         [Required]
         [StringLength(128, MinimumLength = 6, ErrorMessage = "Password is too short, must be at least 6 characters")]
-        public string Passcode { get; set; }
+        public string Password { get; set; }
 
         [Required]
         [StringLength(128, MinimumLength = 6)]
-        [Compare("Passcode", ErrorMessage = "Password is not match")]
-        public string Repasscode { get; set; }
+        [Compare("Password", ErrorMessage = "Password is not match")]
+        public string Repassword { get; set; }
 
-        public bool SetPassword()
+        public Account Create()
         {
-            if (Passcode == Repasscode)
+            byte[] hash = Password.ToSecureHash();
+
+            return new Account()
             {
-                Password = Passcode.ToSecureHash();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                Username = Username,
+                Password = hash,
+                DisplayName = DisplayName,
+            };
         }
     }
 }

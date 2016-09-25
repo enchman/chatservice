@@ -21,28 +21,21 @@ namespace ChatService.Controllers
 
         [HttpPost]
         public IActionResult Signup(AccountTemplate model)
-        {            
-            if (model.SetPassword())
-            {
-                Account user = model as Account;
-                Data.DataContext.Instance.Accounts.Add(user);
-                int rows = Data.DataContext.Instance.SaveChanges();
+        {
+            var user = model.Create();
 
-                if (rows == 1)
+            bool exist = Data.DataContext.Instance.Accounts.Any(x => x.Username == user.Username);
+
+            if (!exist)
+            {
+                Data.DataContext.Instance.Accounts.Add(user);
+                int row = Data.DataContext.Instance.SaveChanges();
+                if (row == 1)
                 {
                     return RedirectToAction("Preview", model);
                 }
-                else
-                {
-                    ViewBag.Message = "Username is already exists";
-                    return View();
-                }
             }
-            else
-            {
-                ViewBag.Message = "Password is not match";
-                return View();
-            }
+            return View();
         }
 
         public IActionResult Preview(AccountTemplate user)

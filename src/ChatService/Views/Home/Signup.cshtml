@@ -7,27 +7,23 @@
 @using (Html.BeginForm("Signup", "Home", "POST"))
 {
     <div class="panel">
-        <h3>@ViewBag.Result</h3>
+        <h3>Hello</h3>
     </div>
     <div class="panel panel-default">
         <label for="user">Username</label>
         @Html.TextBoxFor(m => m.Username, new { id = "user" })
-        <!--<input id="user" type="text" name="username" />-->
     </div>
     <div class="panel panel-default">
         <label for="pass">Password</label>
-        @Html.PasswordFor(m => m.Passcode, new { id = "pass" })
-        <!--<input id="pass" type="password" name="password" />-->
+        @Html.PasswordFor(m => m.Password, new { id = "pass" })
     </div>
     <div class="panel panel-default">
         <label for="repass">Re-Password</label>
-        @Html.PasswordFor(m => m.Repasscode, new { id = "repass" })
-        <!--<input id="repass" type="password" name="repassword" />-->
+        @Html.PasswordFor(m => m.Repassword, new { id = "repass" })
     </div>
     <div class="panel panel-default">
         <label for="display">Display name</label>
         @Html.TextBoxFor(m => m.DisplayName, new { id = "display" })
-        <!--<input id="display" type="text" name="displayname" />-->
     </div>
     <div>
         <label></label>

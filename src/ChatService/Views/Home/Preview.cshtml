@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "User information";
-    if (Model.Passcode == Model.Repasscode) { ViewBag.PasswordMatch = "Matched"; }
+    if (Model.Password == Model.Repassword) { ViewBag.PasswordMatch = "Matched"; }
     else { ViewBag.PasswordMatch = "Not match!"; }
 }
 <div class="panel panel-default">
