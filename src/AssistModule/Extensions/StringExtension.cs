@@ -50,6 +50,19 @@ namespace AssistModule.Extensions
             return secureHash.SequenceEqual(userHash);
         }
 
+        public static bool VerifyToken(this string source, byte[] token)
+        {
+            try
+            {
+                byte[] hash = Convert.FromBase64String(source);
+                return hash.VerifyToken(token);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private static byte[] getSecureHash(string password, byte[] salt)
         {
             // Plain text extraction

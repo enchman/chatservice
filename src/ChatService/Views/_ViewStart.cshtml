@@ -1,3 +1,10 @@
 ﻿@{
-    Layout = "_Layout";
+    if (Context.Items.ContainsKey(SessionType.AccountId))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_Template";
+    }
 }

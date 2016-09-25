@@ -1,0 +1,22 @@
+﻿@model ChatService.Models.AccountLogin
+@{ 
+    ViewData["Title"] = "Login";
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+<div>
+    <div class="userbox input-group">
+        <label id="user" class="input-group-addon">Username</label>
+        @Html.TextBoxFor(m => m.Username, new { id = "user", @class = "form-control" })
+    </div>
+    <div class="userbox input-group">
+        <label id="pass" class="input-group-addon">Password</label>
+        @Html.PasswordFor(m => m.Password, new { id = "pass", @class = "form-control" })
+    </div>
+    <div class="input-group">
+        <label></label>
+        <button class="btn btn-primary" type="submit">Login</button>
+    </div>
+</div>
+}

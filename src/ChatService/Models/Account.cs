@@ -16,6 +16,17 @@ namespace ChatService.Models
         public byte[] Password { get; set; }
     }
 
+    public class AccountLogin
+    {
+        [Required]
+        [StringLength(255, MinimumLength = 3)]
+        public string Username { get; set; }
+        [Required]
+        [StringLength(128, MinimumLength = 6)]
+        public string Password { get; set; }
+        public bool RememberMe { get; set; }
+    }
+
     public class AccountTemplate
     {
         [Required]

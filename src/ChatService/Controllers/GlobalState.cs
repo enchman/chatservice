@@ -7,13 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChatService.Controllers
 {
-    public enum SessionType
-    {
-        AccountId,
-        Token,
-        OnSince
-    }
-
     static class CookieOption
     {
         private static string tokenName = "c_t";
@@ -47,6 +40,14 @@ namespace ChatService.Controllers
             }
 
             return false;
+        }
+
+        public static bool IsLogin
+        {
+            get
+            {
+                Http
+            }
         }
     }
 }

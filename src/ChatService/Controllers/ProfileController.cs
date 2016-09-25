@@ -19,14 +19,28 @@ namespace ChatService.Controllers
 
                 var user = Data.DataContext.Instance.Accounts.First(x => x.Id == userId);
 
-                ViewData["Title"] = user.DisplayName;
-
-                return View(user);
+                if (user != null)
+                {
+                    ViewData["Title"] = user.DisplayName + "'s profile";
+                    return View(user);
+                }
+                else
+                {
+                    // Dispose Sessions
+                    HttpContext.Items.Clear();
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
                 return RedirectToAction("Index", "Home");
             }
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Items.Clear();
+            return View();
         }
     }
 }

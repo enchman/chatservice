@@ -4,28 +4,31 @@
     ViewData["Title"] = "Sign up";
 }
 
-@using (Html.BeginForm("Signup", "Home", "POST"))
+@using (Html.BeginForm("Signup", "Home", FormMethod.Post))
 {
     <div class="panel">
         <h3>Hello</h3>
     </div>
-    <div class="panel panel-default">
-        <label for="user">Username</label>
-        @Html.TextBoxFor(m => m.Username, new { id = "user" })
+    <div class="col">
+
     </div>
-    <div class="panel panel-default">
-        <label for="pass">Password</label>
-        @Html.PasswordFor(m => m.Password, new { id = "pass" })
+    <div class="userbox input-group">
+        <label for="user" class="input-group-addon">Username</label>
+        @Html.TextBoxFor(m => m.Username, new { id = "user", @class = "form-control" })
     </div>
-    <div class="panel panel-default">
-        <label for="repass">Re-Password</label>
-        @Html.PasswordFor(m => m.Repassword, new { id = "repass" })
+    <div class="userbox input-group">
+        <label for="pass" class="input-group-addon">Password</label>
+        @Html.PasswordFor(m => m.Password, new { id = "pass", @class = "form-control" })
     </div>
-    <div class="panel panel-default">
-        <label for="display">Display name</label>
-        @Html.TextBoxFor(m => m.DisplayName, new { id = "display" })
+    <div class="userbox input-group">
+        <label for="repass" class="input-group-addon">Re-password</label>
+        @Html.PasswordFor(m => m.Repassword, new { id = "repass", @class = "form-control" })
     </div>
-    <div>
+    <div class="userbox input-group">
+        <label for="display" class="input-group-addon">Display name</label>
+        @Html.TextBoxFor(m => m.DisplayName, new { id = "display", @class = "form-control" })
+    </div>
+    <div class="userbox">
         <label></label>
         <input type="hidden" name="seed" value="" />
         <button type="submit">Sign up</button>

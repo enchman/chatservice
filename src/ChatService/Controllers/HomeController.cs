@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ChatService.Models;
+using AssistModule;
+using AssistModule.Extensions;
 
 namespace ChatService.Controllers
 {
@@ -38,9 +40,32 @@ namespace ChatService.Controllers
             return View();
         }
 
-        public IActionResult Preview(AccountTemplate user)
+        public IActionResult Login()
         {
-            return View(user);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(AccountLogin model)
+        {
+            Account user =  Data.DataContext.Instance.Accounts.First(x => x.Username == model.Username);
+            if (user != null)
+            {
+                if (model.Password.VerifyPassword(user.Password))
+                {
+                    HttpContext.Items[SessionType.Token] = Assistant.RandomBytes()
+                    HttpContext.Items[SessionType.AccountId] = user.Id;
+                    return RedirectToAction("Index", "Profile");
+                }
+                else
+                {
+                    return RedirectToAction("Login");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public IActionResult About()

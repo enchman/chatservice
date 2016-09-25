@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace AssistModule
@@ -18,6 +19,13 @@ namespace AssistModule
             byte[] raw = new byte[length];
             Random.NextBytes(raw);
             return raw;
+        }
+
+        public static byte[] GenerateToken()
+        {
+            byte[] hash = RandomBytes(16);
+            HMACMD5 md5 = new HMACMD5(KeyContext.SemiKey);
+            return md5.ComputeHash(hash);
         }
     }
 }

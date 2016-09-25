@@ -29,6 +29,14 @@ textarea {
     width: 100%;
 }
 
+.userbox.input-group{
+    margin: 0 0 10px 0;
+}
+.userbox label.input-group-addon{
+    width: 120px !important;
+    cursor: pointer;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
   /* Hide captions */

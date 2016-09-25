@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using ChatService.Controllers
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -29,11 +30,23 @@
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ChatService</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Signup">Sign up</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                </ul>
+                @if (!UserAction.IsLogin)
+                {
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Signup">Sign up</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Login">Login</a></li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Profile" asp-action="Index">Home</a></li>
+                        <li><a asp-area="" asp-controller="Profile" asp-action="Profile">Profile</a></li>
+                        <li><a asp-area="" asp-controller="Profile" asp-action="Logout">Log out</a></li>
+                    </ul>
+                }
+                
             </div>
         </div>
     </div>
