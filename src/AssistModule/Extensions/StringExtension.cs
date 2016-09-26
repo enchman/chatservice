@@ -63,6 +63,25 @@ namespace AssistModule.Extensions
             }
         }
 
+        public static bool IsTokenValid(this string source, byte[] token)
+        {
+            try
+            {
+                byte[] clientToken = Convert.FromBase64String(source);
+                if (clientToken.Length == Assistant.TokenSize)
+                {
+                    using (var md5 = MD5.Create())
+                    {
+                        byte[] clientHash = md5.ComputeHash(clientToken);
+                        return token.SequenceEqual(clientHash);
+                    }
+                }
+                
+            }
+            catch { }
+            return false;
+        }
+
         private static byte[] getSecureHash(string password, byte[] salt)
         {
             // Plain text extraction

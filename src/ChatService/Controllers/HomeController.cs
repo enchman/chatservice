@@ -42,6 +42,10 @@ namespace ChatService.Controllers
 
         public IActionResult Login()
         {
+            if (Request.Cookies.ContainsKey(CookieOption.TokenName))
+            {
+                
+            }
             return View();
         }
 
@@ -53,9 +57,13 @@ namespace ChatService.Controllers
             {
                 if (model.Password.VerifyPassword(user.Password))
                 {
-                    HttpContext.Items[SessionType.Token] = Assistant.RandomBytes()
+                    byte[] localToken;
+                    string token = Assistant.GetToken(out localToken);
+
+                    Response.Cookies.Append(CookieOption.TokenName, token);
+                    HttpContext.Items[SessionType.Token] = localToken;
                     HttpContext.Items[SessionType.AccountId] = user.Id;
-                    return RedirectToAction("Index", "Profile");
+                    return RedirectToAction("Index", "Profile", null);
                 }
                 else
                 {

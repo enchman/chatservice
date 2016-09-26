@@ -41,13 +41,5 @@ namespace ChatService.Controllers
 
             return false;
         }
-
-        public static bool IsLogin
-        {
-            get
-            {
-                Http
-            }
-        }
     }
 }
